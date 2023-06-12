@@ -141,6 +141,12 @@ const Register = () => {
             <Text style={commonStyles.textButton}>Create Account</Text>
           </TouchableOpacity>
         </View>
+        <TouchableOpacity
+            style={{textAlign:"center"}}
+            onPress={()=>router.replace("/auth/Login")}
+          >
+            <Text style={commonStyles.inputLabel}>Go back</Text>
+          </TouchableOpacity>
       </View>
     </SafeAreaView>
   );

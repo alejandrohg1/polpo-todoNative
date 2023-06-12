@@ -3,6 +3,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export const appSignIn = async (data) => {
 
+  
   try {
     const response = await fetch("https://api-todos-prueba.onrender.com/api/v1/auth/login", {
       method: "POST",
@@ -12,14 +13,14 @@ export const appSignIn = async (data) => {
       body: JSON.stringify(data),
     })
 
-    if (!response.ok) {
-      return (result)
-    }
     const result = await response.json();
+    if (!response.ok) {
+      return {success:false}
+    }
     await setUser(result);
-   
-
     return result;
+    
+    
   } catch (error) {
     console.log(error);
     return null;

@@ -21,10 +21,8 @@ import { appSignIn } from "../../actions/actionsAuth";
 const Login = () => {
   const router = useRouter();
   const {setUser} = useAuthStore((state) => state);
-  const [loginError, setErrors] = useState({
-    status:false,
-    message:""
-  });
+  const [loginError, setErrors] = useState(false)
+    
   
 
   const {
@@ -41,13 +39,14 @@ const Login = () => {
   const onSubmit = async(data) => {
     
     const response = await appSignIn(data);
-    setUser(response);
-    if(response.status){
-      setErrors({message:response.message,status:true});
+    if (!response.success) {
+      setErrors(true);
+      
+    } else {
+      setUser(response);
+      router.push("/home");
+      setErrors(false);
     }
-
-    setErrors({message:"",status:false});
-    router.push("/home");
     
   }
 
@@ -71,7 +70,7 @@ const Login = () => {
         <View>
           <Text style={styles.title}>Sign Up</Text>
         </View>
-        { loginError.status && <Text style ={{color:"#FF0000",marginTop:20}}>Crendiatls Invalid.</Text>}
+        { loginError && <Text style ={{color:"#FF0000",marginTop:20}}>Crendiatls Invalid.</Text>}
         <View style={{ marginTop: 30, gap: 25 }}>
           <View>
             <Text style={commonStyles.inputLabel}>Email</Text>
