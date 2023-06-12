@@ -5,4 +5,4 @@ For installing
 npm i
 npm start 
 
-you'll have to wait until all is installed 
+you'll have to wait until everything is installed
